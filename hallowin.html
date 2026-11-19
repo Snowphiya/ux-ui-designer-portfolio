@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halloween Stickers | Creative Playground</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #ff762b;
+    --purple: #a66bff;
+    --bg: #100e16;
+    --card: #1b1824;
+    --white: #f8f5ff;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Background glow */
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: var(--purple);
+    filter: blur(170px);
+    opacity: .12;
+    top: 10%;
+    left: -200px;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: var(--orange);
+    filter: blur(170px);
+    opacity: .10;
+    bottom: 0;
+    right: -200px;
+    pointer-events: none;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    font-family: 'Space Grotesk';
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.logo span {
+    color: var(--orange);
+}
+
+.back-btn {
+    text-decoration: none;
+    color: white;
+    border: 1px solid #51445e;
+    padding: 11px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.back-btn:hover {
+    background: var(--purple);
+    border-color: var(--purple);
+    transform: translateY(-3px);
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 100px 20px 75px;
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    color: var(--orange);
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk';
+    font-size: clamp(45px, 8vw, 95px);
+    line-height: 1.05;
+    font-weight: 700;
+}
+
+.hero h1 span {
+    color: var(--orange);
+}
+
+.hero p {
+    color: #aaa4b5;
+    max-width: 550px;
+    margin: 22px auto 0;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.hero-icon {
+    font-size: 50px;
+    display: inline-block;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Gallery */
+.gallery-section {
+    max-width: 1150px;
+    margin: auto;
+    padding: 20px 25px 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.gallery-heading h2 {
+    font-family: 'Space Grotesk';
+    font-size: 25px;
+}
+
+.gallery-heading span {
+    color: #9991a5;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.sticker-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.sticker-card {
+    background: var(--card);
+    border: 1px solid #302a3b;
+    border-radius: 20px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .4s ease;
+    animation: appear .7s ease both;
+}
+
+.sticker-card:hover {
+    transform: translateY(-9px) rotate(-2deg);
+    border-color: var(--orange);
+    box-shadow: 0 15px 40px #ff762b22;
+}
+
+.sticker-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: .4s;
+}
+
+.sticker-card:hover img {
+    transform: scale(1.13) rotate(4deg);
+}
+
+.sticker-card:nth-child(even):hover {
+    transform: translateY(-9px) rotate(2deg);
+}
+
+/* Preview */
+.preview {
+    position: fixed;
+    inset: 0;
+    background: #08070deF;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 25px;
+}
+
+.preview.active {
+    display: flex;
+}
+
+.preview img {
+    max-width: 85%;
+    max-height: 80vh;
+    object-fit: contain;
+    animation: zoom .3s ease;
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    border-top: 1px solid #292432;
+    color: #8d8797;
+    font-size: 13px;
+}
+
+footer span {
+    color: var(--orange);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoom {
+    from { transform: scale(.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media(max-width: 750px) {
+    .sticker-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 13px;
+    }
+
+    .hero {
+        padding-top: 75px;
+    }
+
+    .gallery-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media(max-width: 380px) {
+    .sticker-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">SNOW<span>.</span></div>
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-icon">🎃</div>
+    <div class="eyebrow">CREATIVE PLAYGROUND / 001</div>
+
+    <h1>Spooky Little<br><span>Creations.</span></h1>
+
+    <p>
+        A little collection of Halloween-inspired digital stickers.
+        Exploring creativity, playful illustrations and spooky aesthetics.
+    </p>
+</section>
+
+<section class="gallery-section">
+
+    <div class="gallery-heading">
+        <h2>The Sticker Collection ✦</h2>
+        <span>HALLOWEEN EDITION</span>
+    </div>
+
+    <div class="sticker-grid">
+
+        <!-- Change these filenames to your actual sticker names -->
+
+        <div class="sticker-card">
+            <img src="image/Hallowin/Bone.png" alt="Halloween sticker 1">
+        </div>
+
+        <div class="sticker-card">
+            <img src="image/Hallowin/cap.png" alt="Halloween sticker 2">
+        </div>
+
+        <div class="sticker-card">
+            <img src="image/Hallowin/Ghost.png" alt="Halloween sticker 3">
+        </div>
+
+        <div class="sticker-card">
+            <img src="image/Hallowin/Haloween Banner.png" alt="Halloween sticker 4">
+        </div>
+
+        <div class="sticker-card">
+            <img src="image/Hallowin/Haloween pumkin.png" alt="Halloween sticker 5">
+        </div>
+
+        <div class="sticker-card">
+            <img src="image/Hallowin/Spider.png" alt="Halloween sticker 6">
+        </div>
+
+
+    </div>
+</section>
+
+<div class="preview" id="preview">
+    <span class="close" id="closePreview">&times;</span>
+    <img id="previewImage" src="" alt="Sticker preview">
+</div>
+
+<footer>
+    Designed with creativity & a little spooky magic.
+    <br><br>
+    © 2026 <span>Snowphiya Portfolio</span>
+</footer>
+
+<script>
+// Sticker click preview
+const cards = document.querySelectorAll('.sticker-card');
+const preview = document.getElementById('preview');
+const previewImage = document.getElementById('previewImage');
+const closePreview = document.getElementById('closePreview');
+
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        if (!img.complete || img.naturalWidth === 0) return;
+
+        previewImage.src = img.src;
+        preview.classList.add('active');
+    });
+});
+
+closePreview.addEventListener('click', () => {
+    preview.classList.remove('active');
+});
+
+preview.addEventListener('click', (e) => {
+    if (e.target === preview) {
+        preview.classList.remove('active');
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        preview.classList.remove('active');
+    }
+});
+</script>
+
+</body>
+</html>
