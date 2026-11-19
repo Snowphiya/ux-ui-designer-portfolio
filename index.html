@@ -265,6 +265,64 @@
       border: 1px dashed rgba(193,138,255,.24); border-radius: 14px;
     }
 
+
+    
+/* Halloween Sticker Project */
+
+.halloween-cover {
+    background:
+        radial-gradient(circle at 20% 20%, #65308c, transparent 45%),
+        radial-gradient(circle at 80% 80%, #a94b20, transparent 45%),
+        #171020 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 220px;
+}
+
+.halloween-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.halloween-preview span {
+    font-size: clamp(35px, 5vw, 65px);
+    display: inline-block;
+    animation: spookyFloat 3s ease-in-out infinite;
+    transition: .3s ease;
+}
+
+.halloween-preview span:nth-child(2) {
+    animation-delay: .4s;
+}
+
+.halloween-preview span:nth-child(3) {
+    animation-delay: .8s;
+}
+
+.halloween-preview span:nth-child(4) {
+    animation-delay: 1.2s;
+}
+
+.halloween-preview span:hover {
+    transform: scale(1.3) rotate(15deg);
+}
+
+@keyframes spookyFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
     /* Journey */
     .journey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
     .journey-card { padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.025); }
@@ -661,39 +719,42 @@
             </div>
           </article>
         </div>
-
-        
+       
 <!-- HALLOWEEN STICKER COLLECTION -->
-<div class="project-card">
+<article class="project-card reveal delay-1">
 
-    <div class="project-image">
-        <img src="images/halloween-preview.png"
-             alt="Halloween Sticker Collection">
+    <div class="project-cover halloween-cover">
+        <div class="halloween-preview">
+            <span>🎃</span>
+            <span>👻</span>
+            <span>🦇</span>
+            <span>🕸️</span>
+        </div>
+        <span class="project-type">Creative Experiments · Sticker Design</span>
     </div>
 
-    <div class="project-content">
-        <span>04 / CREATIVE EXPERIMENTS</span>
-
-        <h3>Sticker Playground</h3>
+    <div class="project-body">
+        <h3>Halloween Sticker Playground</h3>
 
         <p>
-            A playful collection of Halloween-inspired
-            digital stickers, exploring creative
-            illustrations, colours and visual elements.
+            A playful collection of Halloween-inspired digital stickers,
+            exploring creative illustrations, colours and spooky aesthetics.
         </p>
 
         <div class="project-tags">
             <span>Sticker Design</span>
             <span>Photoshop</span>
             <span>Digital Art</span>
+            <span>Creative Experiments</span>
         </div>
 
-        <a href="halloween.html" class="project-link">
-            Explore Collection →
+        <a class="project-link" href="./halloween.html">
+            Explore Collection
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
     </div>
 
-</div>
+</article>
 
 
         <div class="project-note reveal"><span class="text-kicker">A note on the work</span><br>Project note: These are personal, learning or concept projects unless otherwise stated. Individual case studies explain the scope and work completed.</div>
