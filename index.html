@@ -266,10 +266,12 @@
     }
 
 
-    
-/* Halloween Sticker Project */
+
+/* Halloween Sticker Project - Fixed Size */
 
 .halloween-cover {
+    height: 285px;
+    min-height: 285px;
     background:
         radial-gradient(circle at 20% 20%, #65308c, transparent 45%),
         radial-gradient(circle at 80% 80%, #a94b20, transparent 45%),
@@ -279,7 +281,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    min-height: 220px;
+    position: relative;
 }
 
 .halloween-preview {
@@ -314,14 +316,24 @@
 }
 
 @keyframes spookyFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-12px);
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* Mobile size */
+@media (max-width: 720px) {
+    .halloween-cover {
+        height: 260px;
+        min-height: 260px;
     }
 }
 
+@media (max-width: 540px) {
+    .halloween-cover {
+        height: 220px;
+        min-height: 220px;
+    }
+}
 
     /* Journey */
     .journey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -718,7 +730,6 @@
               <a class="project-link" href="poster.html">View poster collection <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </article>
-        </div>
        
 <!-- HALLOWEEN STICKER COLLECTION -->
 <article class="project-card reveal delay-1">
@@ -755,8 +766,7 @@
     </div>
 
 </article>
-
-
+    </div>
         <div class="project-note reveal"><span class="text-kicker">A note on the work</span><br>Project note: These are personal, learning or concept projects unless otherwise stated. Individual case studies explain the scope and work completed.</div>
       </div>
     </section>
